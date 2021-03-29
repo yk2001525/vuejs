@@ -19,6 +19,7 @@ export default {
             type:Boolean,
             default:false
         }
+        
     },
     data(){
         return {
@@ -38,11 +39,14 @@ export default {
             // console.log(position)
             this.$emit('scroll',position)
         })
+        //3.监听滚到底部 
+        if(this.pullUpLoad){   //判断是否滑动到底部
+            this.scroll.on('pullingUp',() => {
+                this.$emit('pullingUp')
+            })
+        }
 
-        //3.监听上拉事件
-        this.scroll.on('pullingUp', () => {
-            this.$emit('pullingUp',)
-        })
+        
 
     },
     methods:{
@@ -51,6 +55,14 @@ export default {
         },
         finishPullUp(){
             this.scroll.finishPullUp()
+        },
+        refresh(){
+            
+            this.scroll && this.scroll.refresh() 
+            console.log('-------')
+        },
+        getScrollY(){
+            return this.scroll ? this.scroll.y : 0
         }
     }
 }
