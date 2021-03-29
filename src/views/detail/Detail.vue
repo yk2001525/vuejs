@@ -18,6 +18,7 @@
         }
     },
     created(){
+        //1.
         this.iid = this.$route.params.iid
     }   
 }
